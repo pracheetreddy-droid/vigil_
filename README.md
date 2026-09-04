@@ -48,22 +48,22 @@ TOURIST ➔ LOCATION INTELLIGENCE ➔ AI RISK ANALYSIS ➔ EMERGENCY RESPONSE �
 
 ---
 
-## 🚀 Aisha Demo Scenario Walkthrough (18 Steps)
+## 🚀 Pracheet Demo Scenario Walkthrough (18 Steps)
 
 The platform includes a built-in guided scenario bar following Aisha's journey in Bengaluru:
 
-1. **Aisha Arrives in Bengaluru**: Opens VIGIL and generates verified Digital Tourist ID (`/id` • `VG-284921`).
+1. **Pracheet Arrives in Bengaluru**: Opens VIGIL and generates verified Digital Tourist ID (`/id` • `VG-284921`).
 2. **Live Location Intelligence**: VIGIL automatically detects GPS position (*Near MG Road Metro*) and scans surroundings (`/`).
 3. **Safety Index Generated**: VIGIL computes real-time Safety Index (**87/100 LOW RISK**) on the Tourist Dashboard (`/dashboard`).
 4. **Safety Map Opened**: Aisha explores the surrounding tactical map to view nearby risk sectors and police kiosks (`/map`).
 5. **Moderate-Risk Zone Detected**: VIGIL flags **MG Road Junction** (Risk Score 72, MODERATE RISK) with evening incident spikes.
-6. **Aisha Asks VIGIL AI**: Inquires *"Is it safe to visit this area tonight?"* (`/copilot`).
+6. **Pracheet Asks VIGIL AI**: Inquires *"Is it safe to visit this area tonight?"* (`/copilot`).
 7. **AI Explains Risk & Recommendations**: AI provides structured advice: avoid unlit side alleys after 10 PM, use western route.
 8. **VIGIL Recommends SafeRoute**: Aisha opens SafeRoute engine comparing Fastest vs Safest (`/saferoute`).
-9. **Aisha Starts Journey**: Selects **SAFEST ROUTE** (24 min, 94/100 Safety Rating) passing 3 police kiosks.
+9. **Pracheet Starts Journey**: Selects **SAFEST ROUTE** (24 min, 94/100 Safety Rating) passing 3 police kiosks.
 10. **Shares Journey with Safety Circle**: Broadcasts live journey link and ETA to Mom, Dad, and Friend (`/circle`).
 11. **Suspicious Incident Occurs**: Aisha prepares a community incident report (`/report`).
-12. **Aisha Activates SOS**: Holds emergency SOS trigger; confirmation timer prevents accidental activation (`/sos`).
+12. **Pracheet Activates SOS**: Holds emergency SOS trigger; confirmation timer prevents accidental activation (`/sos`).
 13. **Emergency Alert Created**: System displays nearest police (1.2 km) and hospital (2.4 km) while transmitting telemetry.
 14. **VIGIL COMMAND Receives Alert**: Authority operations center receives flashing SOS for Aisha (`/authority`).
 15. **Authority Views Aisha’s Safety Profile**: Inspects verified credentials, live GPS coordinates, and journey history.
@@ -105,8 +105,6 @@ npm install
 # 3. Start development server
 npm run dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
