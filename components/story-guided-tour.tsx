@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, ChevronRight, ChevronLeft, Sparkles, CheckCircle2, RotateCcw, X } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
@@ -15,11 +15,11 @@ interface StoryStep {
   triggerAction?: (ctx: any) => void;
 }
 
-const AISHA_STORY_STEPS: StoryStep[] = [
+const PRACHEET_STORY_STEPS: StoryStep[] = [
   {
     step: 1,
-    title: '1. Aisha Arrives in Bengaluru',
-    description: 'Aisha opens VIGIL. Generates verified Digital Tourist ID (VG-284921) with QR access.',
+    title: '1. Pracheet Arrives in Bengaluru',
+    description: 'Pracheet opens VIGIL. Generates verified Digital Tourist ID (VG-284921) with QR access.',
     route: '/id',
   },
   {
@@ -37,7 +37,7 @@ const AISHA_STORY_STEPS: StoryStep[] = [
   {
     step: 4,
     title: '4. Open Interactive Safety Map',
-    description: 'Aisha explores surroundings on the dark map to spot nearby risk zones and police hubs.',
+    description: 'Pracheet explores surroundings on the dark map to spot nearby risk zones and police hubs.',
     route: '/map',
   },
   {
@@ -49,7 +49,7 @@ const AISHA_STORY_STEPS: StoryStep[] = [
   {
     step: 6,
     title: '6. Ask VIGIL AI Copilot',
-    description: 'Aisha asks: "Is it safe to visit this area tonight?" VIGIL AI provides context-aware guidance.',
+    description: 'Pracheet asks: "Is it safe to visit this area tonight?" VIGIL AI provides context-aware guidance.',
     route: '/copilot',
   },
   {
@@ -61,31 +61,31 @@ const AISHA_STORY_STEPS: StoryStep[] = [
   {
     step: 8,
     title: '8. VIGIL Recommends SafeRoute',
-    description: 'Aisha opens SafeRoute engine comparing Fastest (18m/48) vs Safest (24m/94).',
+    description: 'Pracheet opens SafeRoute engine comparing Fastest (18m/48) vs Safest (24m/94).',
     route: '/saferoute',
   },
   {
     step: 9,
-    title: '9. Aisha Starts Journey',
+    title: '9. Pracheet Starts Journey',
     description: 'VIGIL recommends the 94% safety route avoiding 2 risk zones and passing 3 police kiosks.',
     route: '/saferoute',
   },
   {
     step: 10,
     title: '10. Share Journey with Safety Circle',
-    description: 'Aisha broadcasts live journey, ETA, and protected status to Mom, Dad & Friend.',
+    description: 'Pracheet broadcasts live journey, ETA, and protected status to Mom, Dad & Friend.',
     route: '/circle',
   },
   {
     step: 11,
     title: '11. Suspicious Incident Occurs',
-    description: 'Aisha notices suspicious activity and prepares to submit a community report or trigger SOS.',
+    description: 'Pracheet notices suspicious activity and prepares to submit a community report or trigger SOS.',
     route: '/report',
   },
   {
     step: 12,
-    title: '12. Aisha Activates SOS',
-    description: 'Aisha triggers the emergency SOS button. Immediate location & tourist payload is broadcast.',
+    title: '12. Pracheet Activates SOS',
+    description: 'Pracheet triggers the emergency SOS button. Immediate location & tourist payload is broadcast.',
     route: '/sos',
     triggerAction: (ctx) => ctx.triggerSos(),
   },
@@ -98,13 +98,13 @@ const AISHA_STORY_STEPS: StoryStep[] = [
   {
     step: 14,
     title: '14. VIGIL COMMAND Receives Alert',
-    description: 'Switch to Authority view! Operations center receives flashing SOS for Aisha (VG-284921).',
+    description: 'Switch to Authority view! Operations center receives flashing SOS for Pracheet (VG-284921).',
     route: '/authority',
   },
   {
     step: 15,
-    title: '15. Authority Views Aisha’s Safety Profile',
-    description: 'Authorities inspect Aisha’s verified passport, journey history, and live coordinates.',
+    title: '15. Authority Views Pracheet’s Safety Profile',
+    description: 'Authorities inspect Pracheet’s verified passport, journey history, and live coordinates.',
     route: '/authority/profile/VG-284921',
   },
   {
@@ -128,28 +128,48 @@ const AISHA_STORY_STEPS: StoryStep[] = [
 ];
 
 export function StoryGuidedTour() {
-  const [currentStepIndex, setCurrentStepIndex] = React.useState<number>(0);
-  const [isOpen, setIsOpen] = React.useState<boolean>(true);
+  const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   const router = useRouter();
   const pathname = usePathname();
   const vigilCtx = useVigilContext();
 
+  // Load saved step from localStorage on initial mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('vigil_story_step');
+      if (saved !== null) {
+        const parsed = parseInt(saved, 10);
+        if (!isNaN(parsed) && parsed >= 0 && parsed < PRACHEET_STORY_STEPS.length) {
+          setCurrentStepIndex(parsed);
+        }
+      }
+    }
+  }, []);
+
   // Prefetch all route bundles on mount for instant zero-lag navigation
-  React.useEffect(() => {
-    AISHA_STORY_STEPS.forEach((s) => {
+  useEffect(() => {
+    PRACHEET_STORY_STEPS.forEach((s) => {
       try {
         router.prefetch(s.route);
       } catch {}
     });
   }, [router]);
 
-  const currentStep = AISHA_STORY_STEPS[currentStepIndex];
+  const updateStepIndex = (newIdx: number) => {
+    setCurrentStepIndex(newIdx);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('vigil_story_step', newIdx.toString());
+    }
+  };
+
+  const currentStep = PRACHEET_STORY_STEPS[currentStepIndex] || PRACHEET_STORY_STEPS[0];
 
   const handleNext = () => {
-    if (currentStepIndex < AISHA_STORY_STEPS.length - 1) {
+    if (currentStepIndex < PRACHEET_STORY_STEPS.length - 1) {
       const nextIdx = currentStepIndex + 1;
-      setCurrentStepIndex(nextIdx);
-      const nextStep = AISHA_STORY_STEPS[nextIdx];
+      updateStepIndex(nextIdx);
+      const nextStep = PRACHEET_STORY_STEPS[nextIdx];
       if (nextStep.triggerAction) {
         nextStep.triggerAction(vigilCtx);
       }
@@ -160,10 +180,15 @@ export function StoryGuidedTour() {
   const handlePrev = () => {
     if (currentStepIndex > 0) {
       const prevIdx = currentStepIndex - 1;
-      setCurrentStepIndex(prevIdx);
-      const prevStep = AISHA_STORY_STEPS[prevIdx];
+      updateStepIndex(prevIdx);
+      const prevStep = PRACHEET_STORY_STEPS[prevIdx];
       router.push(prevStep.route);
     }
+  };
+
+  const handleReset = () => {
+    updateStepIndex(0);
+    router.push(PRACHEET_STORY_STEPS[0].route);
   };
 
   if (!isOpen) {
@@ -173,7 +198,7 @@ export function StoryGuidedTour() {
         className="fixed bottom-4 left-4 z-50 flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-brand-500/40 text-brand-400 text-xs font-mono shadow-xl hover:bg-zinc-800 transition"
       >
         <Sparkles className="w-3.5 h-3.5" />
-        <span>Run VIGIL Demo Tour ({currentStepIndex + 1}/18)</span>
+        <span>Run Pracheet Demo Tour ({currentStepIndex + 1}/18)</span>
       </button>
     );
   }
@@ -188,7 +213,7 @@ export function StoryGuidedTour() {
           <div className="space-y-0.5">
             <div className="flex items-center gap-2">
               <span className="font-mono text-[10px] text-brand-400 font-bold uppercase tracking-wider">
-                AISHA DEMO SCENARIO • STEP {currentStep.step} OF 18
+                PRACHEET DEMO SCENARIO • STEP {currentStep.step} OF 18
               </span>
               <span className="px-1.5 py-0.2 rounded bg-zinc-800 text-zinc-400 text-[10px]">
                 {currentStep.route}
@@ -203,6 +228,14 @@ export function StoryGuidedTour() {
 
         <div className="flex items-center gap-2 shrink-0 w-full md:w-auto justify-end">
           <button
+            onClick={handleReset}
+            className="p-1.5 rounded bg-zinc-800/80 border border-zinc-700 text-zinc-400 hover:text-white transition"
+            title="Reset Tour to Step 1"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+          </button>
+
+          <button
             onClick={handlePrev}
             disabled={currentStepIndex === 0}
             className="px-2.5 py-1 rounded bg-zinc-800/80 border border-zinc-700 text-zinc-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-zinc-700 transition flex items-center gap-1"
@@ -212,7 +245,7 @@ export function StoryGuidedTour() {
 
           <button
             onClick={handleNext}
-            disabled={currentStepIndex === AISHA_STORY_STEPS.length - 1}
+            disabled={currentStepIndex === PRACHEET_STORY_STEPS.length - 1}
             className="px-3 py-1 rounded bg-brand-600 hover:bg-brand-500 text-white font-medium shadow-md shadow-brand-500/20 transition flex items-center gap-1.5"
           >
             <span>Next Step</span>

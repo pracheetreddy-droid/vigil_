@@ -94,7 +94,7 @@ export interface SosAlert {
 
 export const DEMO_TOURIST: TouristProfile = {
   id: 'VG-284921',
-  name: 'Aisha Rahman',
+  name: 'Pracheet',
   nationality: 'India',
   passportHash: 'IND-9872****',
   status: 'SAFE',
@@ -333,7 +333,7 @@ export const DEMO_SOS_ALERTS: SosAlert[] = [
   {
     id: 'SOS-901',
     touristId: 'VG-284921',
-    touristName: 'Aisha Rahman',
+    touristName: 'Pracheet',
     nationality: 'India',
     lat: 12.9752,
     lng: 77.6065,
