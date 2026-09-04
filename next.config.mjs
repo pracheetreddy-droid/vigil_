@@ -10,7 +10,6 @@ if (isGithubActions) {
 const nextConfig = {
   output: 'export',
   basePath: isGithubActions && repo ? `/${repo}` : '',
-  assetPrefix: isGithubActions && repo ? `/${repo}/` : '',
   reactStrictMode: true,
   swcMinify: true,
   images: {
