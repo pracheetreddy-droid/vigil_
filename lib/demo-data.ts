@@ -94,7 +94,7 @@ export interface SosAlert {
 
 export const DEMO_TOURIST: TouristProfile = {
   id: 'VG-284921',
-  name: 'Pracheet',
+  name: 'Aisha Rahman',
   nationality: 'India',
   passportHash: 'IND-9872****',
   status: 'SAFE',
@@ -110,9 +110,9 @@ export const DEMO_TOURIST: TouristProfile = {
   lastCheckIn: '10:14 PM',
   nextCheckInMinutes: 12,
   contacts: [
-    { name: 'Family Contact', relation: 'Family', phone: '+91 98765 43210', verified: true },
-    { name: 'Emergency Contact', relation: 'Guardian', phone: '+91 98765 43211', verified: true },
-    { name: 'Travel Companion', relation: 'Companion', phone: '+91 98765 43212', verified: true },
+    { name: 'Mom', relation: 'Mother', phone: '+91 98765 43210', verified: true },
+    { name: 'Dad', relation: 'Father', phone: '+91 98765 43211', verified: true },
+    { name: 'Friend (Sneha)', relation: 'Travel Companion', phone: '+91 98765 43212', verified: true },
   ],
   currentJourney: {
     destination: 'Koramangala 5th Block',
@@ -333,7 +333,7 @@ export const DEMO_SOS_ALERTS: SosAlert[] = [
   {
     id: 'SOS-901',
     touristId: 'VG-284921',
-    touristName: 'Pracheet',
+    touristName: 'Aisha Rahman',
     nationality: 'India',
     lat: 12.9752,
     lng: 77.6065,

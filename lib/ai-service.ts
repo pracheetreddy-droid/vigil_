@@ -49,11 +49,43 @@ export async function askVigilAi(
   }
 
   // VIGIL Contextual Local AI Simulation Engine
-  if (queryLower.includes('mg road') || queryLower.includes('risky') || queryLower.includes('tonight')) {
+  if (queryLower.includes('emergency')) {
+    return {
+      riskLevel: 'HIGH RISK',
+      assessmentText: 'Emergency protocol guidance: If you are in immediate danger or witness a critical incident, immediate action is required.',
+      recommendationText: 'Trigger VIGIL SOS immediately to broadcast your live GPS to VIGIL COMMAND & your Safety Circle. Dial 112 (Police) or 108 (Ambulance) for voice dispatch.',
+      nearestPoliceDist: '1.2 km (Cubbon Park Police Station)',
+      nearestHospitalDist: '2.4 km (Bowring ER)',
+      suggestedActions: [
+        'Press & Hold RED SOS BUTTON',
+        'Direct Call National Emergency 112',
+        'Stay in illuminated, populated area',
+      ],
+      source: 'VIGIL_INTELLIGENCE_ENGINE',
+    };
+  }
+
+  if (queryLower.includes('unsafe') || queryLower.includes('followed') || queryLower.includes('danger') || queryLower.includes('suspicious')) {
+    return {
+      riskLevel: 'HIGH RISK',
+      assessmentText: 'Threat awareness protocol initiated. You are currently 900m from Brigade Road Emergency Safe Haven.',
+      recommendationText: 'Walk briskly toward an illuminated commercial store or security kiosk. DO NOT enter isolated alleys. Prepare to trigger VIGIL SOS.',
+      nearestPoliceDist: '0.9 km (Brigade Rd Safe Haven)',
+      nearestHospitalDist: '2.4 km',
+      suggestedActions: [
+        'Hold Red SOS Button for 3 seconds to alert Authorities',
+        'Broadcast live audio & GPS to Safety Circle',
+        'Head immediately to nearest open shop',
+      ],
+      source: 'VIGIL_INTELLIGENCE_ENGINE',
+    };
+  }
+
+  if (queryLower.includes('mg road') || queryLower.includes('risky') || queryLower.includes('tonight') || queryLower.includes('why')) {
     return {
       riskLevel: 'MODERATE RISK',
-      assessmentText: 'Detected 3 recent incidents (2 theft, 1 harassment) within 1.5 km of MG Road. Incident risk spikes after 9:00 PM in side alleys.',
-      recommendationText: 'We recommend taking the western lit corridor along Church Street or using VIGIL SafeRoute. Avoid unmonitored rear alleyways.',
+      assessmentText: '3 recent incidents (2 theft, 1 harassment) detected within 1.5 km of MG Road. Risk increases after 10:00 PM in poorly lit alleyways.',
+      recommendationText: 'Use the western monitored route along Church Street and avoid isolated roads or rear plazas.',
       nearestPoliceDist: '1.2 km (Cubbon Park Police Station)',
       nearestHospitalDist: '2.4 km (Bowring Hospital)',
       suggestedActions: [
@@ -81,27 +113,11 @@ export async function askVigilAi(
     };
   }
 
-  if (queryLower.includes('followed') || queryLower.includes('danger') || queryLower.includes('suspicious')) {
-    return {
-      riskLevel: 'HIGH RISK',
-      assessmentText: 'Threat awareness protocol initiated. You are currently 900m from Brigade Road Emergency Safe Haven.',
-      recommendationText: 'Walk briskly toward an illuminated commercial store or security kiosk. DO NOT enter isolated alleys. Prepare to trigger VIGIL SOS.',
-      nearestPoliceDist: '0.9 km (Brigade Rd Safe Haven)',
-      nearestHospitalDist: '2.4 km',
-      suggestedActions: [
-        'Hold Red SOS Button for 3 seconds to alert Authorities',
-        'Broadcast live audio & GPS to Safety Circle',
-        'Head immediately to nearest open shop',
-      ],
-      source: 'VIGIL_INTELLIGENCE_ENGINE',
-    };
-  }
-
-  if (queryLower.includes('route') || queryLower.includes('go') || queryLower.includes('path')) {
+  if (queryLower.includes('route') || queryLower.includes('go') || queryLower.includes('path') || queryLower.includes('safest')) {
     return {
       riskLevel: 'LOW RISK',
       assessmentText: 'SafeRoute Analysis complete for your journey to Koramangala.',
-      recommendationText: 'The SAFEST Route (24 mins, Safety Score 94) is highly recommended. It avoids 2 active high-risk zones and passes 3 monitored police kiosks.',
+      recommendationText: 'The SAFEST Route (24 mins, Safety Score 94) is highly recommended. It avoids 2 high-risk zones and passes 3 monitored police kiosks.',
       nearestPoliceDist: '1.2 km',
       nearestHospitalDist: '2.4 km',
       suggestedActions: [

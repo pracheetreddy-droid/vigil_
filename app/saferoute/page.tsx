@@ -107,6 +107,11 @@ export default function SafeRoutePage() {
         </h2>
         <InteractiveMap showRoute={true} selectedRoute={activeRoute} heightClass="h-[460px]" />
       </div>
+
+      {/* Safety Routing Disclaimer (Prompt Requirement) */}
+      <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-zinc-800 text-center font-mono text-[11px] text-zinc-500 leading-relaxed">
+        ⚠️ <strong className="text-zinc-400">DEMO SAFETY ROUTING NOTICE:</strong> VIGIL SafeRoute recommendations are prototype algorithmic estimates based on simulated telemetry. VIGIL does not make real-world safety guarantees. Always exercise personal caution.
+      </div>
     </div>
   );
 }

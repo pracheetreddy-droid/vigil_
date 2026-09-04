@@ -15,11 +15,11 @@ interface ChatMessage {
 
 const INITIAL_SUGGESTED_QUESTIONS = [
   'Is my current area safe?',
-  'What route should I take?',
+  'What is the safest route?',
+  'Why is this area risky?',
   'Where is the nearest hospital?',
-  'What should I do if I am being followed?',
   'What should I do in an emergency?',
-  'Why is MG Road marked risky?',
+  'What should I do if I feel unsafe?',
 ];
 
 export default function CopilotPage() {
@@ -224,6 +224,11 @@ export default function CopilotPage() {
             <Send className="w-3.5 h-3.5" />
           </button>
         </form>
+
+        {/* Informational Guidance Disclaimer (Prompt Requirement) */}
+        <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-[11px] font-mono text-zinc-500 text-center leading-relaxed">
+          ⚠️ <strong className="text-zinc-400">SAFETY NOTICE:</strong> VIGIL AI provides contextual safety intelligence for informational guidance only. In an emergency or life-threatening situation, dial <span className="text-white font-bold">112</span> directly or activate <span className="text-red-400 font-bold">VIGIL SOS</span>.
+        </div>
       </div>
     </div>
   );

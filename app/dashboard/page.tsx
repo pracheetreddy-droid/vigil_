@@ -55,9 +55,19 @@ export default function TouristDashboard() {
           </div>
 
           {!isEditingName ? (
-            <h1 className="text-2xl sm:text-3xl font-black text-white uppercase font-sans flex items-center gap-2 mt-0.5">
-              <span>WELCOME, {tourist.name.toUpperCase()}</span>
-            </h1>
+            <div className="space-y-0.5 mt-0.5">
+              <h1 className="text-2xl sm:text-3xl font-black text-white uppercase font-sans flex items-center gap-2">
+                <span>GOOD EVENING, {tourist.name.toUpperCase()}</span>
+              </h1>
+              <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
+                <span>{tourist.location.city}, {tourist.location.country}</span>
+                <span className="text-zinc-600">•</span>
+                <span className="text-emerald-400 font-bold flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                  Journey active ●
+                </span>
+              </div>
+            </div>
           ) : (
             <form onSubmit={handleSaveName} className="flex items-center gap-2 mt-1">
               <input
@@ -135,7 +145,7 @@ export default function TouristDashboard() {
         <div className="lg:col-span-7 p-6 rounded-2xl glass-panel border border-zinc-800 space-y-6">
           <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
             <div>
-              <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider">CURRENT SAFETY INDEX</span>
+              <span className="text-xs font-mono text-brand-400 uppercase tracking-wider font-bold">VIGIL SAFETY INDEX</span>
               <h2 className="text-xl font-bold text-white font-mono mt-0.5">{tourist.location.city}, {tourist.location.country}</h2>
             </div>
             <div className={`px-3 py-1 rounded-full text-xs font-mono font-bold border ${safetyRes.badgeBg}`}>
