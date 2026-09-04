@@ -100,7 +100,7 @@ export function InteractiveMap({
               </svg>
             )}
 
-            {/* Current Tourist Pin (Aisha Rahman) */}
+            {/* Current Tourist Pin (Pracheet) */}
             <div className="absolute left-[20%] top-[45%] z-20 group cursor-pointer">
               <div className="relative flex items-center justify-center">
                 <div className="w-10 h-10 rounded-full bg-cyan-500/20 border-2 border-cyan-400 flex items-center justify-center text-cyan-300 shadow-glow-cyan animate-pulse">
